@@ -28,7 +28,7 @@ def load_titanic():
 df = load_titanic()
 st.success(f" Loaded {len(df)} passengers")
 
- Sidebar for API key
+ 
 with st.sidebar:
 gemini_api_key = st.text_input("Google Gemini API Key (Free)", type="password", help="Get free key from aistudio.google.com")
  if not gemini_api_key:
@@ -91,6 +91,7 @@ if prompt := st.chat_input("Ask anything about Titanic passengers..."):
 
 
         st.session_state.messages.append({"role": "assistant", "content": response})
+
 
 
 
