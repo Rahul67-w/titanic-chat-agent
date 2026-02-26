@@ -28,12 +28,12 @@ def load_titanic():
 df = load_titanic()
 st.success(f" Loaded {len(df)} passengers")
 
-# Sidebar for API key
-# with st.sidebar:
-#     gemini_api_key = st.text_input("Google Gemini API Key (Free)", type="password", help="Get free key from aistudio.google.com")
-#     if not gemini_api_key:
-#         st.info("Please enter your free Gemini API key to start chatting.")
-#         st.stop()
+ Sidebar for API key
+with st.sidebar:
+gemini_api_key = st.text_input("Google Gemini API Key (Free)", type="password", help="Get free key from aistudio.google.com")
+ if not gemini_api_key:
+     st.info("Please enter your free Gemini API key to start chatting.")
+    st.stop()
 
 
 custom_prefix = """
@@ -65,12 +65,12 @@ if prompt := st.chat_input("Ask anything about Titanic passengers..."):
     with st.chat_message("assistant"):
         st_callback = StreamlitCallbackHandler(st.container(), expand_new_thoughts=False)
 
-        llm = ChatGoogleGenerativeAI(
-            model="gemini-2.5-flash",     
-            temperature=0,
-            google_api_key="AIzaSyARR6Ra-dbk2BZinJa6I32FKQ0wpdRMtow",
-            streaming=True
-        )
+    llm = ChatGoogleGenerativeAI(
+    model="gemini-2.5-flash",
+    temperature=0,
+    google_api_key=request.gemini_api_key,       
+    streaming=False
+)
 
         agent = create_pandas_dataframe_agent(
             llm,
@@ -91,5 +91,6 @@ if prompt := st.chat_input("Ask anything about Titanic passengers..."):
 
 
         st.session_state.messages.append({"role": "assistant", "content": response})
+
 
 
