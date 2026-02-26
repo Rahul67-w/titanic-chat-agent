@@ -68,7 +68,7 @@ if prompt := st.chat_input("Ask anything about Titanic passengers..."):
         llm = ChatGoogleGenerativeAI(
             model="gemini-2.5-flash",     
             temperature=0,
-            google_api_key=st.secrets["GEMINI_API_KEY"].strip('"'),
+            google_api_key="AIzaSyARR6Ra-dbk2BZinJa6I32FKQ0wpdRMtow",
             streaming=True
         )
 
@@ -91,4 +91,5 @@ if prompt := st.chat_input("Ask anything about Titanic passengers..."):
 
 
         st.session_state.messages.append({"role": "assistant", "content": response})
+
 
