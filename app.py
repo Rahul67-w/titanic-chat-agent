@@ -68,7 +68,7 @@ if prompt := st.chat_input("Ask anything about Titanic passengers..."):
         llm = ChatGoogleGenerativeAI(
             model="gemini-2.5-flash",     
             temperature=0,
-            google_api_key="AIzaSyARR6Ra-dbk2BZinJa6I32FKQ0wpdRMtow",
+            google_api_key=st.secrets["GEMINI_API_KEY"],
             streaming=True
         )
 
@@ -88,5 +88,6 @@ if prompt := st.chat_input("Ask anything about Titanic passengers..."):
         if os.path.exists("plot.png"):
             st.image("plot.png", caption="📊 Generated Visualization", use_column_width=True)
             os.remove("plot.png")   
+
 
         st.session_state.messages.append({"role": "assistant", "content": response})
